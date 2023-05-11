@@ -57,7 +57,7 @@ public class Pagos extends javax.swing.JFrame {
         jButtonBuscarPago.setText("Buscar pago");
 
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 102, 204));
+        jLabelTitulo.setForeground(new java.awt.Color(255, 153, 255));
         jLabelTitulo.setText("PAGOS");
 
         jPanelRealizarPago.setBackground(new java.awt.Color(102, 102, 255));
