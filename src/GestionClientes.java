@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -9,11 +18,41 @@
  */
 public class GestionClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GestionClientes
-     */
+    Connection conBD = null;
+    Statement stm = null;
+    String servidor = "jdbc:mysql://localhost:3306/";
+    String basedatos = "jardineria";
+    String DBuser = "root";
+    String DBpass = "1234";
+    Statement stmt;
+    ResultSet resultados;
+    ArrayList<Clientes> listaClientes;
+            
     public GestionClientes() {
         initComponents();
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conBD = DriverManager.getConnection(servidor + basedatos, DBuser, DBpass);
+        } catch (SQLException error) {
+            System.out.println("Error al conectar a BD: " + error.getMessage());
+        } catch (Exception e){
+    
+        }
+        
+        listaClientes = new ArrayList<>();
+        
+        try {
+            stmt = conBD.createStatement();
+            resultados = stmt.executeQuery("SELECT * FROM cliente ");
+
+                //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
+            while (resultados.next()) {
+                listaClientes.add(new Clientes(resultados.getInt("codigo_cliente"), resultados.getString("nombre_cliente"), resultados.getString("nombre_contacto"), resultados.getString("apellido_contacto"), resultados.getString("telefono"), resultados.getString("fax"), resultados.getString("linea_direccion1"), resultados.getString("linea_direccion2"), resultados.getString("ciudad"), resultados.getString("region"), resultados.getString("pais"), resultados.getString("codigo_postal"), resultados.getInt("codigo_empleado_rep_ventas"), resultados.getDouble("limite_credito")));
+            }
+        } catch (Exception e) {
+            
+        }
     }
 
     /**
@@ -88,11 +127,11 @@ public class GestionClientes extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Codigo Cliente.");
+        jLabel2.setText("Codigo Cliente. *");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre Cliente.");
+        jLabel3.setText("Nombre Cliente. *");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +139,7 @@ public class GestionClientes extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Telefono.");
+        jLabel6.setText("Telefono. *");
 
         jTextFieldCodigoCli.setEnabled(false);
 
@@ -110,11 +149,11 @@ public class GestionClientes extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Fax.");
+        jLabel7.setText("Fax. *");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Direccion 1.");
+        jLabel8.setText("Direccion 1. *");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,7 +181,7 @@ public class GestionClientes extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Ciudad.");
+        jLabel10.setText("Ciudad. *");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -261,6 +300,11 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonAltaCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonAltaCli.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAltaCli.setText("Alta cliente");
+        jButtonAltaCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAltaCliActionPerformed(evt);
+            }
+        });
 
         jButtonBajaCli.setBackground(new java.awt.Color(51, 0, 153));
         jButtonBajaCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -306,7 +350,7 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addComponent(jButtonAltaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBajaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonBuscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonActualizacionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -327,6 +371,10 @@ public class GestionClientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAltaCliActionPerformed
 
     /**
      * @param args the command line arguments
