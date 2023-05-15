@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class Pagos extends javax.swing.JFrame {
@@ -13,9 +14,37 @@ public class Pagos extends javax.swing.JFrame {
     String basedatos = "jardineria";
     String DBuser = "root";
     String DBpass = "daniel110704";
+    ArrayList<DatosPagos> pagos;
+    ResultSet consulta;
     
     public Pagos() {
         initComponents();
+         
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conBD = DriverManager.getConnection(servidor + basedatos, DBuser, DBpass);
+            
+            
+        } catch (SQLException error) {
+            System.out.println("Error al conectar a BD: " + error.getMessage());
+        } catch (Exception e){
+        
+
+        }
+        pagos= new ArrayList<>();
+        
+        try {
+            stm = conBD.createStatement();
+            consulta = stm.executeQuery("SELECT * FROM pago ");
+
+                //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
+            while (consulta.next()) {
+                pagos.add(new DatosPagos(consulta.getInt("codigo_cliente"), consulta.getString("forma_pago"), consulta.getString("id_transaccion"), consulta.getString("fecha_pago"), consulta.getFloat("total")));
+            }
+        } catch (Exception e) {
+            
+        }
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -211,13 +240,28 @@ public class Pagos extends javax.swing.JFrame {
     private void jButtonRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPagoActionPerformed
 
     try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conBD = DriverManager.getConnection(servidor + basedatos, DBuser, DBpass);
+        
+        String id="SELECT id_transaccion FROM pago";
+        int nuevoid=0;
+        
+        ResultSet rs= stm.executeQuery(id);
+        
+        
+        
+        while(rs.next()){
+        
+        nuevoid=rs.getInt("id")+1;
+        
+        
+        
+        }
+        
             
-            String sql = "INSERT INTO pago VALUES('"+jTextFieldCodigo.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldFechaPago.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldTotal.getText()+")";
+        
+        
+            String sql = "INSERT INTO pago VALUES('"+jTextFieldCodigo.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldFechaPago.getText()+"','"+jTextFieldTotal.getText()+")";
             stm.executeUpdate(sql);
-        } catch (SQLException error) {
-            System.out.println("Error al conectar a BD: " + error.getMessage());
+
         } catch (Exception e){
     
         }       

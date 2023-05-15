@@ -373,7 +373,11 @@ public class GestionClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaCliActionPerformed
-        // TODO add your handling code here:
+        
+        double limite=Double.parseDouble(jTextFieldLimite_credito.getText());
+        
+        listaClientes.add(new Clientes(Integer.parseInt(jTextFieldCodigoCli.getText()), jTextFieldNombreCli.getText(), jTextFieldNombreCont1.getText(), jTextFieldApellidoCont.getText(), jTextFieldTelefonoCli.getText(), jTextFieldFaxCli.getText(), jTextFieldDireccion1Cli.getText(), jTextFieldDireccion2Cli.getText(), jTextFieldCiudadCli.getText(), jTextFieldRegionCli.getText(), jTextFieldPaisCli.getText(), jTextFieldCodpostalCli.getText(), Integer.parseInt(jTextFieldCodigoEmpleado.getText()),limite));
+        
     }//GEN-LAST:event_jButtonAltaCliActionPerformed
 
     /**

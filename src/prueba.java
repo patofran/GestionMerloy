@@ -23,10 +23,10 @@ public class prueba {
         String servidor = "jdbc:mysql://localhost:3306/";
         String basedatos = "jardineria";
         String DBuser = "root";
-        String DBpass = "1234";
+        String DBpass = "daniel110704";
         Statement stmt;
-        ResultSet resultados;
-        ArrayList<Clientes> listaClientes;
+        ArrayList<DatosPagos> pagos;
+        ResultSet consulta;
 
         try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -37,21 +37,21 @@ public class prueba {
 
             }
 
-        listaClientes = new ArrayList<>();
+        pagos = new ArrayList<>();
         
         try {
             stmt = conBD.createStatement();
-            resultados = stmt.executeQuery("SELECT * FROM cliente ");
+            consulta = stmt.executeQuery("SELECT * FROM cliente ");
 
                 //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
-            while (resultados.next()) {
-                listaClientes.add(new Clientes(resultados.getInt("codigo_cliente"), resultados.getString("nombre_cliente"), resultados.getString("nombre_contacto"), resultados.getString("apellido_contacto"), resultados.getString("telefono"), resultados.getString("fax"), resultados.getString("linea_direccion1"), resultados.getString("linea_direccion2"), resultados.getString("ciudad"), resultados.getString("region"), resultados.getString("pais"), resultados.getString("codigo_postal"), resultados.getInt("codigo_empleado_rep_ventas"), resultados.getDouble("limite_credito")));
+            while (consulta.next()) {
+                pagos.add(new DatosPagos(consulta.getInt("codigo_cliente"), consulta.getString("forma_pago"), consulta.getString("id_transaccion"), consulta.getString("fecha_pago"), consulta.getFloat("total")));
             }
         } catch (Exception e) {
             
         }
-        for (Iterator<Clientes> iterator = listaClientes.iterator(); iterator.hasNext();) {
-            Clientes next = iterator.next();
+        for (Iterator<DatosPagos> iterator = pagos.iterator(); iterator.hasNext();) {
+            DatosPagos next = iterator.next();
             System.out.println(" " + next.toString());
         }
     }
