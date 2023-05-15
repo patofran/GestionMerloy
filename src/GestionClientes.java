@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,8 +28,54 @@ public class GestionClientes extends javax.swing.JFrame {
     String DBuser = "root";
     String DBpass = "1234";
     Statement stmt;
-    ResultSet resultados;
-    ArrayList<Clientes> listaClientes;
+    ResultSet consulta;
+    String sql;
+    
+    public boolean camposObligatorios(){
+        boolean notNuls = true;
+        
+        if (jTextFieldNombreCli.getText().equals("") || jTextFieldNombreCli.getText().equals(" ")) {
+            notNuls = false;
+        }
+        if (jTextFieldTelefonoCli.getText().equals("") || jTextFieldTelefonoCli.getText().equals(" ")) {
+            notNuls = false;
+        }
+        if (jTextFieldFaxCli.getText().equals("") || jTextFieldFaxCli.getText().equals(" ")) {
+            notNuls = false;
+        }
+        if (jTextFieldCiudadCli.getText().equals("") || jTextFieldCiudadCli.getText().equals(" ")) {
+            notNuls = false;
+        }
+        if (jTextFieldDireccion1Cli.getText().equals("") || jTextFieldDireccion1Cli.getText().equals(" ")) {
+            notNuls = false;
+        }
+
+        return notNuls;
+    }
+    
+    public boolean camposCorrectos(){
+        int codigoEmpleado = 0;
+        double limiteCredito = 0;
+        boolean numericosBien = true;
+        
+        if (jTextFieldLimite_credito.getText().equals("") == false) {       
+            try {
+                limiteCredito = Double.parseDouble(jTextFieldLimite_credito.getText());
+            } catch (Exception e) {
+                numericosBien = false;
+            }
+        }
+        
+        if (jTextFieldCodigoEmpleado.getText().equals("") == false) {
+            try {
+                codigoEmpleado = Integer.parseInt(jTextFieldCodigoEmpleado.getText());
+            } catch (Exception e) {
+                numericosBien = false;
+            }
+        }
+        
+        return numericosBien;
+    }
             
     public GestionClientes() {
         initComponents();
@@ -40,19 +89,6 @@ public class GestionClientes extends javax.swing.JFrame {
     
         }
         
-        listaClientes = new ArrayList<>();
-        
-        try {
-            stmt = conBD.createStatement();
-            resultados = stmt.executeQuery("SELECT * FROM cliente ");
-
-                //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
-            while (resultados.next()) {
-                listaClientes.add(new Clientes(resultados.getInt("codigo_cliente"), resultados.getString("nombre_cliente"), resultados.getString("nombre_contacto"), resultados.getString("apellido_contacto"), resultados.getString("telefono"), resultados.getString("fax"), resultados.getString("linea_direccion1"), resultados.getString("linea_direccion2"), resultados.getString("ciudad"), resultados.getString("region"), resultados.getString("pais"), resultados.getString("codigo_postal"), resultados.getInt("codigo_empleado_rep_ventas"), resultados.getDouble("limite_credito")));
-            }
-        } catch (Exception e) {
-            
-        }
     }
 
     /**
@@ -75,7 +111,7 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldCodigoCli = new javax.swing.JTextField();
         jTextFieldNombreCli = new javax.swing.JTextField();
-        jTextFieldNombreCont1 = new javax.swing.JTextField();
+        jTextFieldNombreCont = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldApellidoCont = new javax.swing.JTextField();
         jTextFieldTelefonoCli = new javax.swing.JTextField();
@@ -90,7 +126,7 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextFieldPaisCli = new javax.swing.JTextField();
-        jTextFieldCodpostalCli = new javax.swing.JTextField();
+        jTextFieldCodPostalCli = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jTextFieldCodigoEmpleado = new javax.swing.JTextField();
@@ -127,7 +163,7 @@ public class GestionClientes extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Codigo Cliente. *");
+        jLabel2.setText("Codigo Cliente.");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,6 +215,12 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Limite_credito.");
 
+        jTextFieldCodigoEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoEmpleadoActionPerformed(evt);
+            }
+        });
+
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Ciudad. *");
@@ -198,7 +240,7 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel10)
                             .addComponent(jTextFieldCodigoCli)
-                            .addComponent(jTextFieldNombreCont1)
+                            .addComponent(jTextFieldNombreCont)
                             .addComponent(jTextFieldTelefonoCli)
                             .addComponent(jTextFieldCiudadCli))
                         .addGap(114, 114, 114)
@@ -219,7 +261,7 @@ public class GestionClientes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCodpostalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCodPostalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
@@ -247,7 +289,7 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNombreCont1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombreCont, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldApellidoCont)
                     .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -259,7 +301,7 @@ public class GestionClientes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldFaxCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldCodpostalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldCodPostalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextFieldTelefonoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -373,12 +415,61 @@ public class GestionClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaCliActionPerformed
+        int ultimoCodigo = 0;
         
-        double limite=Double.parseDouble(jTextFieldLimite_credito.getText());
+        //lo primero comprobamos que los campos obligatorios estan puestos
+        if(camposObligatorios() == false){
+            JOptionPane.showMessageDialog(this, "Agunos de los campos (*) obligatorios estan en blanco", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            //despues si ponen alguno de los campos numericos que no son obligatorios comprovamos que sean numeros
+            if(camposCorrectos() == true){
+                //en caso se que este todo correcto sacamos el ultimo id de los clientes y añadimos los datos a la tabla
+                try {
+                    stmt = conBD.createStatement();
+                    sql = "SELECT codigo_cliente FROM cliente ORDER BY codigo_cliente DESC LIMIT 1";
+                    consulta = stmt.executeQuery(sql);
+                    
+                    if (consulta.next()) {
+                        ultimoCodigo = consulta.getInt("codigo_cliente");
+                    }
+                    //un insert mas lago que dia sin pan 
+                    sql = "INSERT INTO `cliente` (`codigo_cliente`, `nombre_cliente`, `nombre_contacto`, `apellido_contacto`, `telefono`, `fax`, `linea_direccion1`, `linea_direccion2`, `ciudad`, `region`, `pais`, `codigo_postal`, `codigo_empleado_rep_ventas`, `limite_credito`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement stm = conBD.prepareStatement(sql);
+                    ultimoCodigo = ultimoCodigo + 1;
+                    //sacamos todos los datos del formulario para meterlos en la base de datos
+                    stm.setInt(1, ultimoCodigo);
+                    stm.setString(2, jTextFieldNombreCli.getText());
+                    stm.setString(3, jTextFieldNombreCont.getText());
+                    stm.setString(4, jTextFieldApellidoCont.getText());
+                    stm.setString(5, jTextFieldTelefonoCli.getText());
+                    stm.setString(6, jTextFieldFaxCli.getText());
+                    stm.setString(7, jTextFieldDireccion1Cli.getText());
+                    stm.setString(8, jTextFieldDireccion2Cli.getText());
+                    stm.setString(9, jTextFieldCiudadCli.getText());
+                    stm.setString(10, jTextFieldRegionCli.getText());
+                    stm.setString(11, jTextFieldPaisCli.getText());
+                    stm.setString(12, jTextFieldCodPostalCli.getText());
+                    stm.setInt(13, Integer.parseInt(jTextFieldCodigoEmpleado.getText()));
+                    stm.setDouble(14, Double.parseDouble(jTextFieldLimite_credito.getText()));
+                    stm.executeUpdate();
+                    
+                    //por ultimo informamos que todo a salido bien
+                    JOptionPane.showMessageDialog(this, "Cliente creado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                   System.out.println("mal " + ex.getMessage());
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "El campo (Codigo empleado) o el campo (Limite Credito) no tiene el formato correcto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         
-        listaClientes.add(new Clientes(Integer.parseInt(jTextFieldCodigoCli.getText()), jTextFieldNombreCli.getText(), jTextFieldNombreCont1.getText(), jTextFieldApellidoCont.getText(), jTextFieldTelefonoCli.getText(), jTextFieldFaxCli.getText(), jTextFieldDireccion1Cli.getText(), jTextFieldDireccion2Cli.getText(), jTextFieldCiudadCli.getText(), jTextFieldRegionCli.getText(), jTextFieldPaisCli.getText(), jTextFieldCodpostalCli.getText(), Integer.parseInt(jTextFieldCodigoEmpleado.getText()),limite));
         
     }//GEN-LAST:event_jButtonAltaCliActionPerformed
+
+    private void jTextFieldCodigoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,17 +533,18 @@ public class GestionClientes extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldApellidoCont;
     private javax.swing.JTextField jTextFieldCiudadCli;
+    private javax.swing.JTextField jTextFieldCodPostalCli;
     private javax.swing.JTextField jTextFieldCodigoCli;
     private javax.swing.JTextField jTextFieldCodigoEmpleado;
-    private javax.swing.JTextField jTextFieldCodpostalCli;
     private javax.swing.JTextField jTextFieldDireccion1Cli;
     private javax.swing.JTextField jTextFieldDireccion2Cli;
     private javax.swing.JTextField jTextFieldFaxCli;
     private javax.swing.JTextField jTextFieldLimite_credito;
     private javax.swing.JTextField jTextFieldNombreCli;
-    private javax.swing.JTextField jTextFieldNombreCont1;
+    private javax.swing.JTextField jTextFieldNombreCont;
     private javax.swing.JTextField jTextFieldPaisCli;
     private javax.swing.JTextField jTextFieldRegionCli;
     private javax.swing.JTextField jTextFieldTelefonoCli;
     // End of variables declaration//GEN-END:variables
+
 }

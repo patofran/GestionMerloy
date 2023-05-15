@@ -44,7 +44,7 @@ public class prueba {
             consulta = stmt.executeQuery("SELECT * FROM cliente ");
 
                 //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
-            while (consulta.next()) {
+            while (consulta.first()) {
                 pagos.add(new DatosPagos(consulta.getInt("codigo_cliente"), consulta.getString("forma_pago"), consulta.getString("id_transaccion"), consulta.getString("fecha_pago"), consulta.getFloat("total")));
             }
         } catch (Exception e) {

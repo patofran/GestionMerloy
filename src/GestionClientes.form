@@ -175,7 +175,7 @@
                                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldCodigoCli" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldNombreCont1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldNombreCont" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldTelefonoCli" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldCiudadCli" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -201,7 +201,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldRegionCli" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCodpostalCli" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="jTextFieldCodPostalCli" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldCodigoEmpleado" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -235,7 +235,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldNombreCont1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jTextFieldNombreCont" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jTextFieldApellidoCont" alignment="3" max="32767" attributes="0"/>
                           <Component id="jTextFieldCodigoEmpleado" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
@@ -249,7 +249,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextFieldFaxCli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodpostalCli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jTextFieldCodPostalCli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jTextFieldTelefonoCli" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
@@ -289,7 +289,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Codigo Cliente. *"/>
+                <Property name="text" type="java.lang.String" value="Codigo Cliente."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -332,7 +332,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNombreCli">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldNombreCont1">
+            <Component class="javax.swing.JTextField" name="jTextFieldNombreCont">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -425,7 +425,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldPaisCli">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldCodpostalCli">
+            <Component class="javax.swing.JTextField" name="jTextFieldCodPostalCli">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
@@ -450,6 +450,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldCodigoEmpleado">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCodigoEmpleadoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldLimite_credito">
             </Component>
