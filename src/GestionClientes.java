@@ -138,6 +138,7 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonBuscarCli = new javax.swing.JButton();
         jButtonAltaCli = new javax.swing.JButton();
         jButtonBajaCli = new javax.swing.JButton();
+        jButtonFichero = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -353,6 +354,16 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonBajaCli.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBajaCli.setText("Baja cliente");
 
+        jButtonFichero.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonFichero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonFichero.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonFichero.setText("Facturacion del Cliente");
+        jButtonFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFicheroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -367,7 +378,8 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jButtonActualizacionCli)
                             .addComponent(jButtonAltaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBajaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBuscarCli))
+                            .addComponent(jButtonBuscarCli)
+                            .addComponent(jButtonFichero))
                         .addGap(140, 140, 140))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -395,7 +407,9 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonActualizacionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonActualizacionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
@@ -471,6 +485,12 @@ public class GestionClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodigoEmpleadoActionPerformed
 
+    private void jButtonFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFicheroActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButtonFicheroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -511,6 +531,7 @@ public class GestionClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAltaCli;
     private javax.swing.JButton jButtonBajaCli;
     private javax.swing.JButton jButtonBuscarCli;
+    private javax.swing.JButton jButtonFichero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -87,6 +87,7 @@
                               <Component id="jButtonAltaCli" min="-2" pref="115" max="-2" attributes="0"/>
                               <Component id="jButtonBajaCli" min="-2" pref="115" max="-2" attributes="0"/>
                               <Component id="jButtonBuscarCli" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonFichero" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
@@ -124,6 +125,8 @@
                           <Component id="jButtonBuscarCli" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonActualizacionCli" min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButtonFichero" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -540,6 +543,23 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Baja cliente"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonFichero">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="0" red="33" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Facturacion del Cliente"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFicheroActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
