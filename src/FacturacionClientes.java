@@ -28,7 +28,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
     String servidor = "jdbc:mysql://localhost:3306/";
     String basedatos = "jardineria";
     String DBuser = "root";
-    String DBpass = "1234";
+    String DBpass = "daniel110704";
     Statement stmt;
     String sql;
     /**
@@ -96,7 +96,6 @@ public class FacturacionClientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Facturacion de los clientes");
-        setPreferredSize(new java.awt.Dimension(750, 500));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 204), 5, true));
@@ -118,7 +117,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableFacturacion);
 
-        jButtonCrearTxt.setText("jButton1");
+        jButtonCrearTxt.setText("Generar infrome");
         jButtonCrearTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCrearTxtActionPerformed(evt);
@@ -134,20 +133,23 @@ public class FacturacionClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonCrearTxt))
                     .addComponent(jLabel1))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCrearTxt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jButtonCrearTxt)))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 

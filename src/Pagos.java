@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class Pagos extends javax.swing.JFrame {
@@ -14,7 +15,6 @@ public class Pagos extends javax.swing.JFrame {
     String basedatos = "jardineria";
     String DBuser = "root";
     String DBpass = "daniel110704";
-    ArrayList<DatosPagos> pagos;
     ResultSet consulta;
     
     public Pagos() {
@@ -31,20 +31,7 @@ public class Pagos extends javax.swing.JFrame {
         
 
         }
-        pagos= new ArrayList<>();
-        
-        try {
-            stm = conBD.createStatement();
-            consulta = stm.executeQuery("SELECT * FROM pago ");
-
-                //cargo todos los datos de la base de datos para trabajar de manera mas comoda con los datos.
-            while (consulta.next()) {
-                pagos.add(new DatosPagos(consulta.getInt("codigo_cliente"), consulta.getString("forma_pago"), consulta.getString("id_transaccion"), consulta.getString("fecha_pago"), consulta.getFloat("total")));
-            }
-        } catch (Exception e) {
-            
-        }
-        
+             
     }
     
     @SuppressWarnings("unchecked")
@@ -85,6 +72,11 @@ public class Pagos extends javax.swing.JFrame {
         jButtonBuscarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonBuscarPago.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscarPago.setText("Buscar pago");
+        jButtonBuscarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarPagoActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 153, 255));
@@ -180,6 +172,11 @@ public class Pagos extends javax.swing.JFrame {
         jButtonActualizarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonActualizarPago.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizarPago.setText("Actualizacion pago");
+        jButtonActualizarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarPagoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelVentanaLayout = new javax.swing.GroupLayout(jPanelVentana);
         jPanelVentana.setLayout(jPanelVentanaLayout);
@@ -259,7 +256,7 @@ public class Pagos extends javax.swing.JFrame {
             
         
         
-            String sql = "INSERT INTO pago VALUES('"+jTextFieldCodigo.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldFechaPago.getText()+"','"+jTextFieldTotal.getText()+")";
+            String sql = "INSERT INTO pago VALUES('"+jTextFieldCodigo.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldFechaPago.getText()+"','"+jTextFieldTotal.getText()+"')";
             stm.executeUpdate(sql);
 
         } catch (Exception e){
@@ -274,6 +271,44 @@ public class Pagos extends javax.swing.JFrame {
     private void jComboBoxPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPagoActionPerformed
+
+    private void jButtonActualizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarPagoActionPerformed
+
+try{
+            int codigo=Integer.parseInt(jTextFieldCodigo.getText());
+            String forma_pago =(String)jComboBoxPago.getSelectedItem();
+            String fecha =jTextFieldFechaPago.getText();
+            float total=Float.parseFloat(jTextFieldTotal.getText());
+    
+            String sql = "SELECT * FROM pago set WHERE codigo_cliente LIKE'"+codigo+"' AND forma_pago LIKE '"+forma_pago+"'AND fecha_pago LIKE '"+fecha+"'AND total LIKE '"+total;
+    
+            
+            stm.executeUpdate(sql);}
+        catch(Exception e){
+            
+        }
+        
+        
+    }//GEN-LAST:event_jButtonActualizarPagoActionPerformed
+
+    private void jButtonBuscarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPagoActionPerformed
+    
+        try{
+            int codigo=Integer.parseInt(jTextFieldCodigo.getText());
+            String forma_pago =(String)jComboBoxPago.getSelectedItem();
+            String fecha =jTextFieldFechaPago.getText();
+            float total=Float.parseFloat(jTextFieldTotal.getText());
+    
+            
+            String sql = "SELECT * FROM pago set WHERE codigo_cliente LIKE '"+codigo+"' AND forma_pago LIKE '"+forma_pago+"'AND fecha_pago LIKE '"+fecha+"'AND total LIKE '"+total+"'";
+    
+            /*Se mostrara mediante jtable*/
+    
+            stm.executeUpdate(sql);}
+        catch(Exception e){
+        }
+        
+    }//GEN-LAST:event_jButtonBuscarPagoActionPerformed
 
     /**
      * @param args the command line arguments

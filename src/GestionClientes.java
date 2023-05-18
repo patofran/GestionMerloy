@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -26,11 +27,11 @@ public class GestionClientes extends javax.swing.JFrame {
     String servidor = "jdbc:mysql://localhost:3306/";
     String basedatos = "jardineria";
     String DBuser = "root";
-    String DBpass = "1234";
+    String DBpass = "daniel110704";
     Statement stmt;
     ResultSet consulta;
     String sql;
-    
+
     public boolean camposObligatorios(){
         boolean notNuls = true;
         
@@ -79,7 +80,6 @@ public class GestionClientes extends javax.swing.JFrame {
             
     public GestionClientes() {
         initComponents();
-        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conBD = DriverManager.getConnection(servidor + basedatos, DBuser, DBpass);
@@ -139,6 +139,8 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonAltaCli = new javax.swing.JButton();
         jButtonBajaCli = new javax.swing.JButton();
         jButtonFichero = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableBusquedaCli = new javax.swing.JTable();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -252,11 +254,11 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jTextFieldDireccion2Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldLimite_credito, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldLimite_credito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                                 .addComponent(jTextFieldFaxCli, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldApellidoCont, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldNombreCli, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))))
+                                .addComponent(jTextFieldNombreCli, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTextFieldDireccion1Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,14 +268,15 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextFieldPaisCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldPaisCli, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                 .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel3)
@@ -333,11 +336,21 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonActualizacionCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonActualizacionCli.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizacionCli.setText("Actualizacion Cliente");
+        jButtonActualizacionCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizacionCliActionPerformed(evt);
+            }
+        });
 
         jButtonBuscarCli.setBackground(new java.awt.Color(51, 0, 153));
         jButtonBuscarCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonBuscarCli.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscarCli.setText("Buscar cliente");
+        jButtonBuscarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarCliActionPerformed(evt);
+            }
+        });
 
         jButtonAltaCli.setBackground(new java.awt.Color(51, 0, 153));
         jButtonAltaCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -353,6 +366,11 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonBajaCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonBajaCli.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBajaCli.setText("Baja cliente");
+        jButtonBajaCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaCliActionPerformed(evt);
+            }
+        });
 
         jButtonFichero.setBackground(new java.awt.Color(51, 0, 153));
         jButtonFichero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -364,6 +382,19 @@ public class GestionClientes extends javax.swing.JFrame {
             }
         });
 
+        jTableBusquedaCli.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableBusquedaCli);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -371,7 +402,7 @@ public class GestionClientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,9 +413,12 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jButtonFichero))
                         .addGap(140, 140, 140))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabelTitulo)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(143, 143, 143)
+                                .addComponent(jLabelTitulo))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -411,14 +445,16 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 861, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 911, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,6 +527,125 @@ public class GestionClientes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonFicheroActionPerformed
 
+    private void jButtonActualizacionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizacionCliActionPerformed
+        
+       
+        if(camposObligatorios() == false){
+            JOptionPane.showMessageDialog(this, "Agunos de los campos (*) obligatorios estan en blanco", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            //despues si ponen alguno de los campos numericos que no son obligatorios comprovamos que sean numeros
+            if(camposCorrectos() == true){
+                //en caso se que este todo correcto sacamos el ultimo id de los clientes y añadimos los datos a la tabla
+                try {
+                
+                stmt = conBD.createStatement();
+                
+                int cod_cli=Integer.parseInt(JOptionPane.showInputDialog("Introduce el codigo del cliente"));
+                int codigo_emp=Integer.parseInt(jTextFieldCodigoEmpleado.getText());
+                double limite_credito=Double.parseDouble(jTextFieldLimite_credito.getText());
+                
+                
+                sql = "UPDATE cliente set nombre_cliente='"+jTextFieldNombreCli.getText()+"', nombre_contacto='"+jTextFieldNombreCont.getText()+"', apellido_contacto='"+jTextFieldApellidoCont.getText()+"', telefono='"+jTextFieldTelefonoCli.getText()+"', fax='"+jTextFieldFaxCli.getText()+"', linea_direccion1='"+jTextFieldDireccion1Cli.getText()+"', linea_direccion2='"+jTextFieldDireccion2Cli.getText()+"', ciudad='"+jTextFieldCiudadCli.getText()+"', region='"+jTextFieldRegionCli.getText()+"', pais='"+jTextFieldPaisCli.getText()+"', codigo_postal='"+jTextFieldCodPostalCli.getText()+"', codigo_empleado_rep_ventas='"+codigo_emp+"', limite_credito='"+limite_credito+"' WHERE codigo_cliente='"+cod_cli+"'";
+                
+                
+                stmt.executeUpdate(sql);
+                stmt.close();
+                
+                JOptionPane.showMessageDialog(this, "Cliente actualizado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                }
+                catch(Exception e){
+                
+                JOptionPane.showMessageDialog(this, "Error en la introduccion de los datos");
+                    
+                }
+                
+            }
+            
+            else{}
+            
+            }
+        
+        
+    }//GEN-LAST:event_jButtonActualizacionCliActionPerformed
+
+    private void jButtonBuscarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCliActionPerformed
+
+     try {
+            
+            stmt = conBD.createStatement();
+            
+            String [ ] opciones = {"Por codigo", "Por nombre", "Por telefono"};
+            /*String opc=(String) JOptionPane.showInputDialog(this, JTextField, "Selecciona un tipo de busqueda", "Tipos de busqueda", JOptionPane.QUESTION_MESSAGE, null,opciones,opciones[0],EXIT_ON_CLOSE);*/
+            int codigo_cli=Integer.parseInt(JOptionPane.showInputDialog("Introduce el codigo del cliente"));
+            String sql = "select * from cliente WHERE codigo_cliente LIKE "+codigo_cli+"";
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("cod_cliente");
+            modelo.addColumn("nombre_cliente");
+            modelo.addColumn("nombre_contacto");
+            modelo.addColumn("apellido_contacto");
+            modelo.addColumn("telefono");
+            modelo.addColumn("fax");
+            modelo.addColumn("direccion1");
+            modelo.addColumn("direccion2");
+            modelo.addColumn("ciudad");
+            modelo.addColumn("region");
+            modelo.addColumn("pais");
+            modelo.addColumn("codigo_postal");
+            modelo.addColumn("codigo_empleado");
+            modelo.addColumn("limite_credito");
+
+            String datos[] = new String[14];
+            int cantDatosRecogidos = 0;
+            
+            while(rs.next()){
+                cantDatosRecogidos++;
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
+                datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
+                datos[10] = rs.getString(11);
+                datos[11] = rs.getString(12);
+                datos[12] = rs.getString(13);
+                datos[13] = rs.getString(14);
+                modelo.addRow(datos);
+            }
+            
+            if (cantDatosRecogidos == 0) {
+               JOptionPane.showMessageDialog(this, "No se tienen datos en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            jTableBusquedaCli.setModel(modelo);
+        } catch (Exception error) {
+        
+        }
+
+    }//GEN-LAST:event_jButtonBuscarCliActionPerformed
+
+    private void jButtonBajaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaCliActionPerformed
+
+        try{
+        
+        int codigo_cli=Integer.parseInt(JOptionPane.showInputDialog("Introduce el codigo del cliente"));
+    
+        
+        sql = "DELETE FROM Cliente WHERE codigo_cliente LIKE "+codigo_cli+"";
+            
+        JOptionPane.showMessageDialog(this, "Cliente eliminado de la base de datos");
+          
+        } catch (Exception error) {
+        
+        }
+
+    }//GEN-LAST:event_jButtonBajaCliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -551,6 +706,8 @@ public class GestionClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableBusquedaCli;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldApellidoCont;
     private javax.swing.JTextField jTextFieldCiudadCli;
