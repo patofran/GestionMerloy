@@ -565,7 +565,9 @@ public class GestionClientes extends javax.swing.JFrame {
                     consulta = stm.executeQuery();
                     
                     cargarDatos(consulta);
+                    
                     break;
+                    
                 case 1:
                     telefono = JOptionPane.showInputDialog(this,"Introduce el nombre del cliente");
                     
@@ -594,8 +596,10 @@ public class GestionClientes extends javax.swing.JFrame {
                     consulta = stm.executeQuery();
                     cargarDatos(consulta);
                     break;
+                
+                
+                default: 
                     
-                default:            
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestionClientes.class.getName()).log(Level.SEVERE, null, ex);
