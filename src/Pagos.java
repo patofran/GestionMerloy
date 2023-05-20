@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 public class Pagos extends javax.swing.JFrame {
@@ -13,19 +12,17 @@ public class Pagos extends javax.swing.JFrame {
     Connection conBD = null;
     Statement stm = null;
     String servidor = "jdbc:mysql://localhost:3306/";
-    String bd = "jardineria";
-    String usuer = "root";
-    String password = "daniel110704";
-    String sql;
-    String id_transaccion;
-    ResultSet rs;
+    String basedatos = "jardineria";
+    String DBuser = "root";
+    String DBpass = "daniel110704";
+    ResultSet consulta;
     
     public Pagos() {
         initComponents();
          
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conBD = DriverManager.getConnection(servidor + bd, usuer, password);
+            conBD = DriverManager.getConnection(servidor + basedatos, DBuser, DBpass);
             
             
         } catch (SQLException error) {
@@ -57,8 +54,6 @@ public class Pagos extends javax.swing.JFrame {
         jLabelSeccion1 = new javax.swing.JLabel();
         jButtonRealizarPago = new javax.swing.JButton();
         jButtonActualizarPago = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableBuscarPago = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pagos Clientes Merloy Lerlin");
@@ -72,11 +67,6 @@ public class Pagos extends javax.swing.JFrame {
         jButtonEliminarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonEliminarPago.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEliminarPago.setText("Eliminar pago");
-        jButtonEliminarPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarPagoActionPerformed(evt);
-            }
-        });
 
         jButtonBuscarPago.setBackground(new java.awt.Color(51, 0, 153));
         jButtonBuscarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -188,19 +178,6 @@ public class Pagos extends javax.swing.JFrame {
             }
         });
 
-        jTableBuscarPago.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableBuscarPago);
-
         javax.swing.GroupLayout jPanelVentanaLayout = new javax.swing.GroupLayout(jPanelVentana);
         jPanelVentana.setLayout(jPanelVentanaLayout);
         jPanelVentanaLayout.setHorizontalGroup(
@@ -211,18 +188,15 @@ public class Pagos extends javax.swing.JFrame {
                 .addGap(229, 229, 229))
             .addGroup(jPanelVentanaLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanelVentanaLayout.createSequentialGroup()
-                        .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSeccion1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEliminarPago)
-                            .addComponent(jButtonBuscarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonActualizarPago))))
+                .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSeccion1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEliminarPago)
+                    .addComponent(jButtonBuscarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonActualizarPago))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanelVentanaLayout.setVerticalGroup(
@@ -243,9 +217,7 @@ public class Pagos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonActualizarPago))
                     .addComponent(jPanelRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +228,7 @@ public class Pagos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelVentana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelVentana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -266,32 +238,29 @@ public class Pagos extends javax.swing.JFrame {
 
     try {
         
-        stm=conBD.createStatement();
-        String id = "SELECT id_transaccion FROM pago";
-        String forma_pago =(String)jComboBoxPago.getSelectedItem();
-        int codigo=Integer.parseInt(jTextFieldCodigo.getText());
-        String nuevoid="";
-        rs= stm.executeQuery(id);
-        int cont=0;
+        String id="SELECT id_transaccion FROM pago";
+        int nuevoid=0;
+        
+        ResultSet rs= stm.executeQuery(id);
+        
+        
         
         while(rs.next()){
-            cont++;
-            nuevoid=rs.getString("id_transaccion");
-            System.out.println(nuevoid);
+        
+        nuevoid=rs.getInt("id")+1;
+        
         
         
         }
-        String numero=nuevoid.substring(11,13);
-        int numerosuma=Integer.parseInt(numero)+1;
-        id_transaccion="ak-std-0000"+numerosuma;
         
-         System.out.println(id_transaccion);
+            
         
-        sql = "INSERT INTO pago VALUES("+codigo+",'"+forma_pago+"','"+id_transaccion+"','"+jTextFieldFechaPago.getText()+"',"+jTextFieldTotal.getText()+")";
-        stm.executeUpdate(sql);
-        JOptionPane.showMessageDialog(this, "Cliente creado correctamente");
+        
+            String sql = "INSERT INTO pago VALUES('"+jTextFieldCodigo.getText()+"','"+jComboBoxPago.getName()+"','"+jTextFieldFechaPago.getText()+"','"+jTextFieldTotal.getText()+"')";
+            stm.executeUpdate(sql);
+
         } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Error al crear el pago");
+    
         }       
     }//GEN-LAST:event_jButtonRealizarPagoActionPerformed
 
@@ -306,21 +275,17 @@ public class Pagos extends javax.swing.JFrame {
     private void jButtonActualizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarPagoActionPerformed
 
 try{
-            stm = conBD.createStatement();
             int codigo=Integer.parseInt(jTextFieldCodigo.getText());
             String forma_pago =(String)jComboBoxPago.getSelectedItem();
             String fecha =jTextFieldFechaPago.getText();
             float total=Float.parseFloat(jTextFieldTotal.getText());
-            id_transaccion=JOptionPane.showInputDialog(this,"Introduce el id de la transaccion para actualizar el pago");
+    
+            String sql = "SELECT * FROM pago set WHERE codigo_cliente LIKE'"+codigo+"' AND forma_pago LIKE '"+forma_pago+"'AND fecha_pago LIKE '"+fecha+"'AND total LIKE '"+total;
+    
             
-            String sql = "UPDATE pago set codigo_cliente='"+codigo+"', forma_pago='"+forma_pago+"', fecha_pago='"+fecha+"', total='"+total+"' WHERE id_transaccion LIKE '"+id_transaccion+"'";
-                
-            
-            stm.executeUpdate(sql);
-            stm.close();
-}
+            stm.executeUpdate(sql);}
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error con la actualizacion de datos debe rellenar todos los campos correctamente");
+            
         }
         
         
@@ -329,60 +294,21 @@ try{
     private void jButtonBuscarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPagoActionPerformed
     
         try{
-            stm = conBD.createStatement();
-            id_transaccion=JOptionPane.showInputDialog(this,"Introduce el id de la transaccion para busacar el pago y cargarlo en la tabla");
-            
-            
-            String sql = "SELECT * FROM pago WHERE id_transaccion LIKE '"+id_transaccion+"'";
+            int codigo=Integer.parseInt(jTextFieldCodigo.getText());
+            String forma_pago =(String)jComboBoxPago.getSelectedItem();
+            String fecha =jTextFieldFechaPago.getText();
+            float total=Float.parseFloat(jTextFieldTotal.getText());
     
-            rs = stm.executeQuery(sql);
-            DefaultTableModel modelo = new DefaultTableModel(); 
-        
-            modelo.addColumn("Codigo cliente");
-            modelo.addColumn("Forma pago");
-            modelo.addColumn("id transaccion");
-            modelo.addColumn("fecha pago");
-            modelo.addColumn("total");
             
-            String datos[] = new String[5];
-
-            while(rs.next()){
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);
-                
-                modelo.addRow(datos);
-            }
-            
-            jTableBuscarPago.setModel(modelo);
-
-        }
-            catch(Exception e){
-            
-            JOptionPane.showMessageDialog(this, "Error en la busqueda del pago");
+            String sql = "SELECT * FROM pago set WHERE codigo_cliente LIKE '"+codigo+"' AND forma_pago LIKE '"+forma_pago+"'AND fecha_pago LIKE '"+fecha+"'AND total LIKE '"+total+"'";
+    
+            /*Se mostrara mediante jtable*/
+    
+            stm.executeUpdate(sql);}
+        catch(Exception e){
         }
         
     }//GEN-LAST:event_jButtonBuscarPagoActionPerformed
-
-    private void jButtonEliminarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPagoActionPerformed
-
-        try{
-        stm = conBD.createStatement();
-        id_transaccion=JOptionPane.showInputDialog(this,"Introduce el id de la transaccion para eliminar el pago");
-
-        String sql = "DELETE FROM pago WHERE id_transaccion LIKE "+id_transaccion+"";
-        
-        stm.executeUpdate(sql);
-        
-        }
-        
-        catch(Exception e){
-            
-            JOptionPane.showMessageDialog(this, "Error en la eliminacion del pago debido a que esta restringido");
-        }
-    }//GEN-LAST:event_jButtonEliminarPagoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,8 +359,6 @@ try{
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanelRealizarPago;
     private javax.swing.JPanel jPanelVentana;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableBuscarPago;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldFechaPago;
     private javax.swing.JTextField jTextFieldTotal;

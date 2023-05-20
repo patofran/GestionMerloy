@@ -28,7 +28,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
     String servidor = "jdbc:mysql://localhost:3306/";
     String basedatos = "jardineria";
     String DBuser = "root";
-    String DBpass = "daniel110704";
+    String DBpass = "1234";
     Statement stmt;
     String sql;
     /**
@@ -50,7 +50,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
             
             stmt = conBD.createStatement();
             
-            sql = "select c.codigo_cliente, c.nombre_cliente, avg(p.total) as Facturacion_Total from cliente c join pago p on c.codigo_cliente = p.codigo_cliente group by  c.codigo_cliente, c.nombre_cliente";
+            sql = "select c.codigo_cliente, c.nombre_cliente, sum(p.total) as Facturacion_Total from cliente c join pago p on c.codigo_cliente = p.codigo_cliente group by  c.codigo_cliente, c.nombre_cliente";
             ResultSet rs = stmt.executeQuery(sql);
             
             DefaultTableModel modelo = new DefaultTableModel();
