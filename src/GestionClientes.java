@@ -567,7 +567,7 @@ public class GestionClientes extends javax.swing.JFrame {
                     cargarDatos(consulta);
                     break;
                 case 1:
-                    telefono = JOptionPane.showInputDialog(this,"Introduce el nombre del cliente");
+                    telefono = JOptionPane.showInputDialog(this,"Introduce el telefono del cliente");
                     
                     //una vez tenemos el nombre lo buscamos en la base de datos
                     
@@ -581,11 +581,11 @@ public class GestionClientes extends javax.swing.JFrame {
                     cargarDatos(consulta);
                     break;
                 case 2:
-                    telefono = JOptionPane.showInputDialog(this,"Introduce el nombre del cliente");
+                    telefono = JOptionPane.showInputDialog(this,"Introduce el codigo del cliente");
                     
                     //una vez tenemos el nombre lo buscamos en la base de datos
                     
-                    sql = "select * from cliente where telefono like ?";
+                    sql = "select * from cliente where codigo_cliente = ?";
                     stm = conBD.prepareStatement(sql);                   
                     stm.setString(1, telefono);
                     
