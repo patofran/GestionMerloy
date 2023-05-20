@@ -39,7 +39,6 @@ public class Pagos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelVentana = new javax.swing.JPanel();
-        jButtonEliminarPago = new javax.swing.JButton();
         jButtonBuscarPago = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jPanelRealizarPago = new javax.swing.JPanel();
@@ -54,6 +53,7 @@ public class Pagos extends javax.swing.JFrame {
         jLabelSeccion1 = new javax.swing.JLabel();
         jButtonRealizarPago = new javax.swing.JButton();
         jButtonActualizarPago = new javax.swing.JButton();
+        jButtonEliminarPago = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pagos Clientes Merloy Lerlin");
@@ -62,11 +62,6 @@ public class Pagos extends javax.swing.JFrame {
         jPanelVentana.setBackground(new java.awt.Color(102, 102, 255));
         jPanelVentana.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 204), 5, true));
         jPanelVentana.setForeground(new java.awt.Color(255, 255, 255));
-
-        jButtonEliminarPago.setBackground(new java.awt.Color(51, 0, 153));
-        jButtonEliminarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButtonEliminarPago.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEliminarPago.setText("Eliminar pago");
 
         jButtonBuscarPago.setBackground(new java.awt.Color(51, 0, 153));
         jButtonBuscarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -178,6 +173,16 @@ public class Pagos extends javax.swing.JFrame {
             }
         });
 
+        jButtonEliminarPago.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonEliminarPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonEliminarPago.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEliminarPago.setText("Eliminar pago");
+        jButtonEliminarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarPagoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelVentanaLayout = new javax.swing.GroupLayout(jPanelVentana);
         jPanelVentana.setLayout(jPanelVentanaLayout);
         jPanelVentanaLayout.setHorizontalGroup(
@@ -194,10 +199,10 @@ public class Pagos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarPago)
                     .addComponent(jButtonBuscarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEliminarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonActualizarPago))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanelVentanaLayout.setVerticalGroup(
             jPanelVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,10 +219,10 @@ public class Pagos extends javax.swing.JFrame {
                         .addComponent(jButtonBuscarPago)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonEliminarPago)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonActualizarPago))
                     .addComponent(jPanelRealizarPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,7 +233,7 @@ public class Pagos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelVentana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelVentana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -293,22 +298,12 @@ try{
 
     private void jButtonBuscarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPagoActionPerformed
     
-        try{
-            int codigo=Integer.parseInt(jTextFieldCodigo.getText());
-            String forma_pago =(String)jComboBoxPago.getSelectedItem();
-            String fecha =jTextFieldFechaPago.getText();
-            float total=Float.parseFloat(jTextFieldTotal.getText());
-    
-            
-            String sql = "SELECT * FROM pago set WHERE codigo_cliente LIKE '"+codigo+"' AND forma_pago LIKE '"+forma_pago+"'AND fecha_pago LIKE '"+fecha+"'AND total LIKE '"+total+"'";
-    
-            /*Se mostrara mediante jtable*/
-    
-            stm.executeUpdate(sql);}
-        catch(Exception e){
-        }
-        
+          
     }//GEN-LAST:event_jButtonBuscarPagoActionPerformed
+
+    private void jButtonEliminarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEliminarPagoActionPerformed
 
     /**
      * @param args the command line arguments

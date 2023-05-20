@@ -93,6 +93,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFacturacion = new javax.swing.JTable();
         jButtonCrearTxt = new javax.swing.JButton();
+        jButtonVorverClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Facturacion de los clientes");
@@ -117,10 +118,23 @@ public class FacturacionClientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableFacturacion);
 
+        jButtonCrearTxt.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonCrearTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonCrearTxt.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCrearTxt.setText("Generar infrome");
         jButtonCrearTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCrearTxtActionPerformed(evt);
+            }
+        });
+
+        jButtonVorverClientes.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonVorverClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonVorverClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVorverClientes.setText("Abrir Clientes");
+        jButtonVorverClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVorverClientesActionPerformed(evt);
             }
         });
 
@@ -133,24 +147,26 @@ public class FacturacionClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonCrearTxt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCrearTxt)
+                            .addComponent(jButtonVorverClientes)))
                     .addComponent(jLabel1))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jButtonCrearTxt)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addComponent(jButtonCrearTxt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonVorverClientes)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,6 +216,12 @@ public class FacturacionClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCrearTxtActionPerformed
 
+    private void jButtonVorverClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVorverClientesActionPerformed
+        GestionClientes gest = new GestionClientes();
+        gest.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButtonVorverClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +259,7 @@ public class FacturacionClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCrearTxt;
+    private javax.swing.JButton jButtonVorverClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

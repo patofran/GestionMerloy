@@ -69,6 +69,36 @@ public class GestionClientes extends javax.swing.JFrame {
         return numericosBien;
     }
     
+    public boolean campoCodigoCorrecto(){
+        int codigoEmpleado = 0;
+        boolean numericosBien = true;
+        
+        if (jTextFieldCodigoEmpleado.getText().equals("") == false) {
+            try {
+                codigoEmpleado = Integer.parseInt(jTextFieldCodigoEmpleado.getText());
+            } catch (Exception e) {
+                numericosBien = false;
+            }
+        }
+        
+        return numericosBien;
+    }
+    
+    public boolean campoLimite(){
+        double limiteCredito = 0;
+        boolean numericosBien = true;
+        
+        if (jTextFieldLimite_credito.getText().equals("") == false) {       
+            try {
+                limiteCredito = Double.parseDouble(jTextFieldLimite_credito.getText());
+            } catch (Exception e) {
+                numericosBien = false;
+            }
+        }
+        
+        return numericosBien;
+    }
+    
     public void cargarDatos(ResultSet consulta){
         
         try {
@@ -93,6 +123,23 @@ public class GestionClientes extends javax.swing.JFrame {
         }
     
     }
+    
+    public void limpiarDatos(){    
+        jTextFieldCodigoCli.setText("");
+        jTextFieldNombreCli.setText("");
+        jTextFieldNombreCont.setText("");
+        jTextFieldApellidoCont.setText("");
+        jTextFieldTelefonoCli.setText("");
+        jTextFieldFaxCli.setText("");
+        jTextFieldDireccion1Cli.setText("");
+        jTextFieldDireccion2Cli.setText("");
+        jTextFieldCiudadCli.setText("");
+        jTextFieldRegionCli.setText("");
+        jTextFieldPaisCli.setText("");
+        jTextFieldCodPostalCli.setText("");
+        jTextFieldCodigoEmpleado.setText("");
+        jTextFieldLimite_credito.setText("");
+    }
             
     public GestionClientes() {
         initComponents();
@@ -104,6 +151,8 @@ public class GestionClientes extends javax.swing.JFrame {
         } catch (Exception e){
     
         }
+        
+        
         
     }
 
@@ -138,11 +187,11 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextFieldPaisCli = new javax.swing.JTextField();
         jTextFieldCodPostalCli = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jTextFieldCodigoEmpleado = new javax.swing.JTextField();
         jTextFieldLimite_credito = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jTextFieldCiudadCli = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButtonActualizacionCli = new javax.swing.JButton();
@@ -150,6 +199,9 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonAltaCli = new javax.swing.JButton();
         jButtonBajaCli = new javax.swing.JButton();
         jButtonFichero = new javax.swing.JButton();
+        jButtonCambiarLimite = new javax.swing.JButton();
+        jButtonAsignarEmpleado = new javax.swing.JButton();
+        jButtonMostrarClientes = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -224,10 +276,6 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Codigo postal.");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Codigo empleado.");
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Limite_credito.");
@@ -242,6 +290,10 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Ciudad. *");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Codigo empleado ventas.");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -251,16 +303,21 @@ public class GestionClientes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jTextFieldCodigoCli)
-                            .addComponent(jTextFieldNombreCont)
-                            .addComponent(jTextFieldTelefonoCli)
-                            .addComponent(jTextFieldCiudadCli))
-                        .addGap(114, 114, 114)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jTextFieldCodigoCli)
+                                        .addComponent(jTextFieldNombreCont)
+                                        .addComponent(jTextFieldTelefonoCli))
+                                    .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(114, 114, 114))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(62, 62, 62)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel5)
@@ -274,17 +331,19 @@ public class GestionClientes extends javax.swing.JFrame {
                                 .addComponent(jTextFieldNombreCli, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTextFieldDireccion1Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCodPostalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldPaisCli, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldPaisCli)
+                    .addComponent(jTextFieldCodPostalCli)
+                    .addComponent(jTextFieldCiudadCli)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
@@ -302,14 +361,14 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jTextFieldPaisCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNombreCont, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldApellidoCont)
-                    .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldApellidoCont, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCiudadCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -324,13 +383,13 @@ public class GestionClientes extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCiudadCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldLimite_credito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldLimite_credito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -396,6 +455,36 @@ public class GestionClientes extends javax.swing.JFrame {
             }
         });
 
+        jButtonCambiarLimite.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonCambiarLimite.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonCambiarLimite.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCambiarLimite.setText("Modificar limite credito");
+        jButtonCambiarLimite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCambiarLimiteActionPerformed(evt);
+            }
+        });
+
+        jButtonAsignarEmpleado.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonAsignarEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonAsignarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAsignarEmpleado.setText("Asignar empleado de ventas");
+        jButtonAsignarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAsignarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        jButtonMostrarClientes.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonMostrarClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonMostrarClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMostrarClientes.setText("Generar listado de los clientes");
+        jButtonMostrarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarClientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -411,7 +500,10 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jButtonAltaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBajaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBuscarCli)
-                            .addComponent(jButtonFichero))
+                            .addComponent(jButtonFichero)
+                            .addComponent(jButtonCambiarLimite)
+                            .addComponent(jButtonAsignarEmpleado)
+                            .addComponent(jButtonMostrarClientes))
                         .addGap(140, 140, 140))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -441,7 +533,13 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonActualizacionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCambiarLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAsignarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMostrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
@@ -509,11 +607,14 @@ public class GestionClientes extends javax.swing.JFrame {
                     stm.setString(12, jTextFieldCodPostalCli.getText());
                     stm.setInt(13, Integer.parseInt(jTextFieldCodigoEmpleado.getText()));
                     stm.setDouble(14, Double.parseDouble(jTextFieldLimite_credito.getText()));
-                    stm.executeQuery();
+                    stm.executeUpdate();
                     
                     
                     
                     JOptionPane.showMessageDialog(this, "Cliente creado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    limpiarDatos();
+                    
                 } catch (Exception ex) {
                    System.out.println("mal " + ex.getMessage());
                 }
@@ -526,19 +627,61 @@ public class GestionClientes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonAltaCliActionPerformed
 
-    private void jTextFieldCodigoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoEmpleadoActionPerformed
-
     private void jButtonFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFicheroActionPerformed
-        // TODO add your handling code here:
-        
-        
+        FacturacionClientes fact = new FacturacionClientes();
+        fact.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButtonFicheroActionPerformed
 
     private void jButtonActualizacionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizacionCliActionPerformed
+
+        //lo primero comprobamos que los campos obligatorios estan puestos
         
-        
+        if(camposObligatorios() == false){
+            JOptionPane.showMessageDialog(this, "Los campos (*) obligatorios no pueden estar vacios", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            
+            //despues si ponen alguno de los campos numericos que no son obligatorios comprovamos que sean numeros
+            
+            if(campoCodigoCorrecto() == true){
+                
+                //en caso se que este todo correcto actualizamos el cliente en cuestion
+                
+                try {
+                    //un update mas lago que dia sin pan 
+                    
+                    sql = "UPDATE cliente SET nombre_cliente = ?, nombre_contacto = ?, apellido_contacto = ?, telefono = ?, fax = ?, linea_direccion1 = ?, linea_direccion2 = ?, ciudad = ?, region = ?, pais = ?, codigo_postal = ?, codigo_empleado_rep_ventas = ? WHERE (codigo_cliente = ?);";
+                    PreparedStatement stm = conBD.prepareStatement(sql);
+                    
+                    //sacamos todos los datos del formulario para meterlos en la base de datos
+                    
+                    stm.setString(1, jTextFieldNombreCli.getText());
+                    stm.setString(2, jTextFieldNombreCont.getText());
+                    stm.setString(3, jTextFieldApellidoCont.getText());
+                    stm.setString(4, jTextFieldTelefonoCli.getText());
+                    stm.setString(5, jTextFieldFaxCli.getText());
+                    stm.setString(6, jTextFieldDireccion1Cli.getText());
+                    stm.setString(7, jTextFieldDireccion2Cli.getText());
+                    stm.setString(8, jTextFieldCiudadCli.getText());
+                    stm.setString(9, jTextFieldRegionCli.getText());
+                    stm.setString(10, jTextFieldPaisCli.getText());
+                    stm.setString(11, jTextFieldCodPostalCli.getText());
+                    stm.setInt(12, Integer.parseInt(jTextFieldCodigoEmpleado.getText()));
+                    stm.setInt(13,Integer.parseInt(jTextFieldCodigoCli.getText()) );
+                    stm.executeUpdate();
+
+                    JOptionPane.showMessageDialog(this, "Cliente actualizado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    limpiarDatos();
+                    
+                } catch (Exception ex) {
+                   System.out.println("mal " + ex.getMessage());
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "El campo (Codigo empleado) no tiene el formato correcto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }    
     }//GEN-LAST:event_jButtonActualizacionCliActionPerformed
 
     private void jButtonBuscarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCliActionPerformed
@@ -603,16 +746,108 @@ public class GestionClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarCliActionPerformed
 
     private void jButtonBajaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaCliActionPerformed
+        try {
+            String opciones[] = {"Si", "No"};
+            int eleccion = 0;   
+            PreparedStatement stm;
+            
+            //preguntamos si el cliente que desea eliminar es el que se esta actualmente cargado en los datos
 
+            eleccion = JOptionPane.showOptionDialog(this, "Desea eliminar el cliente mostrado actualmente", "eliminar un cliente", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, 0);
+
+            switch (eleccion) {
+                case 0:
+                    
+                    //ahora comprobamos que se tiene constancia de un cliente
+                    
+                    if(jTextFieldCodigoCli.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(this, "no se tiene constancia de ningun cliente el los datos", "error", JOptionPane.ERROR_MESSAGE);
+                    }else {
+                        
+                        //en caso de querer que este sea el cliente a eliminar debemos comprobar que no tenga pagos y para eso comprobamos el codigo en los pagos
+                        
+                        int clienteActual = Integer.parseInt(jTextFieldCodigoCli.getText());
+                        sql = "select * from pago where codigo_cliente = ?";
+                        stm = conBD.prepareStatement(sql);                   
+                        stm.setInt(1, clienteActual);
+                        consulta = stm.executeQuery();
+                        
+                        if(consulta.next()) {
+                          JOptionPane.showMessageDialog(this, "este cliente no se puede borrar debido a que esta ligado a otras tablas", "error",JOptionPane.ERROR_MESSAGE);
+                        }else{
+                            
+                            //si no ha realizado ningun pago ya podemos realizar el borrado
+                            
+                            sql = "DELETE FROM cliente WHERE (codigo_cliente = ?);";
+                            stm = conBD.prepareStatement(sql);
+                            stm.setInt(1, Integer.parseInt(jTextFieldCodigoCli.getText()));
+                            stm.executeUpdate();
+                            
+                            //por ultimo mostramos un mensaje de informacion
+                            
+                            JOptionPane.showMessageDialog(this, "Cliente eliminado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                            
+                            limpiarDatos();
+                        }
+                    }
+                    
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(this, "En ese caso puede buscar otro cliente desde el boton (Buscar Cliente)");
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonBajaCliActionPerformed
 
     private void jTextFieldCodigoCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodigoCliActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTextFieldCodigoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoEmpleadoActionPerformed
+        
+    }//GEN-LAST:event_jTextFieldCodigoEmpleadoActionPerformed
+
+    private void jButtonCambiarLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarLimiteActionPerformed
+        
+        //lo primero es comprobar si se tiene un cliente para hacer la operacion
+        
+        if(jTextFieldCodigoCli.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "no se tiene constancia de ningun cliente el los datos", "error", JOptionPane.ERROR_MESSAGE);
+        }else {
+            
+            //una vez se tiene el cliente solo hacemos un update mas pequeño para solo cambiar el limite de credito
+            
+            Double nuevoLimite = Double.parseDouble(JOptionPane.showInputDialog(this, "Indica el limite nuevo del cliente actual"));
+            try {
+
+                sql = "UPDATE cliente SET limite_credito = ? WHERE (codigo_cliente = ?);";
+                PreparedStatement stm = conBD.prepareStatement(sql);
+
+                stm.setDouble(1, nuevoLimite);
+                stm.setInt(2, Integer.parseInt(jTextFieldCodigoCli.getText()));
+                stm.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Limite del cliente actualizado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);        
+                limpiarDatos();
+
+            } catch (Exception ex) {
+               System.out.println("mal " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButtonCambiarLimiteActionPerformed
+
+    private void jButtonAsignarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsignarEmpleadoActionPerformed
+        
+    }//GEN-LAST:event_jButtonAsignarEmpleadoActionPerformed
+
+    private void jButtonMostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMostrarClientesActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -648,9 +883,12 @@ public class GestionClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizacionCli;
     private javax.swing.JButton jButtonAltaCli;
+    private javax.swing.JButton jButtonAsignarEmpleado;
     private javax.swing.JButton jButtonBajaCli;
     private javax.swing.JButton jButtonBuscarCli;
+    private javax.swing.JButton jButtonCambiarLimite;
     private javax.swing.JButton jButtonFichero;
+    private javax.swing.JButton jButtonMostrarClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
