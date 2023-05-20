@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -155,6 +157,20 @@ public class GestionClientes extends javax.swing.JFrame {
         
         
     }
+    
+    public String toString(ArrayList array) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("");
+        
+        for (int i = 0; i < array.size(); i++) {
+            if (i > 0) {
+                sb.append("");
+            }
+            sb.append(array.get(i));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -280,6 +296,7 @@ public class GestionClientes extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Limite_credito.");
 
+        jTextFieldCodigoEmpleado.setEnabled(false);
         jTextFieldCodigoEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCodigoEmpleadoActionPerformed(evt);
@@ -587,7 +604,7 @@ public class GestionClientes extends javax.swing.JFrame {
                     
                     //un insert mas lago que dia sin pan 
                     
-                    sql = "INSERT INTO `cliente` (`codigo_cliente`, `nombre_cliente`, `nombre_contacto`, `apellido_contacto`, `telefono`, `fax`, `linea_direccion1`, `linea_direccion2`, `ciudad`, `region`, `pais`, `codigo_postal`, `codigo_empleado_rep_ventas`, `limite_credito`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    sql = "INSERT INTO `cliente` (`codigo_cliente`, `nombre_cliente`, `nombre_contacto`, `apellido_contacto`, `telefono`, `fax`, `linea_direccion1`, `linea_direccion2`, `ciudad`, `region`, `pais`, `codigo_postal`, `limite_credito`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement stm = conBD.prepareStatement(sql);
                     ultimoCodigo = ultimoCodigo + 1;
                     
@@ -605,11 +622,8 @@ public class GestionClientes extends javax.swing.JFrame {
                     stm.setString(10, jTextFieldRegionCli.getText());
                     stm.setString(11, jTextFieldPaisCli.getText());
                     stm.setString(12, jTextFieldCodPostalCli.getText());
-                    stm.setInt(13, Integer.parseInt(jTextFieldCodigoEmpleado.getText()));
-                    stm.setDouble(14, Double.parseDouble(jTextFieldLimite_credito.getText()));
+                    stm.setDouble(13, Double.parseDouble(jTextFieldLimite_credito.getText()));
                     stm.executeUpdate();
-                    
-                    
                     
                     JOptionPane.showMessageDialog(this, "Cliente creado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
                     
@@ -650,7 +664,7 @@ public class GestionClientes extends javax.swing.JFrame {
                 try {
                     //un update mas lago que dia sin pan 
                     
-                    sql = "UPDATE cliente SET nombre_cliente = ?, nombre_contacto = ?, apellido_contacto = ?, telefono = ?, fax = ?, linea_direccion1 = ?, linea_direccion2 = ?, ciudad = ?, region = ?, pais = ?, codigo_postal = ?, codigo_empleado_rep_ventas = ? WHERE (codigo_cliente = ?);";
+                    sql = "UPDATE cliente SET nombre_cliente = ?, nombre_contacto = ?, apellido_contacto = ?, telefono = ?, fax = ?, linea_direccion1 = ?, linea_direccion2 = ?, ciudad = ?, region = ?, pais = ?, codigo_postal = ? WHERE (codigo_cliente = ?);";
                     PreparedStatement stm = conBD.prepareStatement(sql);
                     
                     //sacamos todos los datos del formulario para meterlos en la base de datos
@@ -666,8 +680,7 @@ public class GestionClientes extends javax.swing.JFrame {
                     stm.setString(9, jTextFieldRegionCli.getText());
                     stm.setString(10, jTextFieldPaisCli.getText());
                     stm.setString(11, jTextFieldCodPostalCli.getText());
-                    stm.setInt(12, Integer.parseInt(jTextFieldCodigoEmpleado.getText()));
-                    stm.setInt(13,Integer.parseInt(jTextFieldCodigoCli.getText()) );
+                    stm.setInt(12,Integer.parseInt(jTextFieldCodigoCli.getText()) );
                     stm.executeUpdate();
 
                     JOptionPane.showMessageDialog(this, "Cliente actualizado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -841,11 +854,55 @@ public class GestionClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCambiarLimiteActionPerformed
 
     private void jButtonAsignarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsignarEmpleadoActionPerformed
+        try {                                                       
+            stmt = conBD.createStatement();
+            ArrayList<String> empleados = new ArrayList<>();
+            boolean empCorrecto = false;
+            PreparedStatement stm;
+            //primero tenemos que sacar todos nombres de los empleados
         
+            sql = "select codigo_empleado, nombre from empleado where puesto like 'Representante Ventas'";
+            consulta = stmt.executeQuery(sql);
+
+            while (consulta.next()) {
+                empleados.add(consulta.getInt("codigo_empleado") + " " + consulta.getString("nombre"));
+            }
+
+            if(jTextFieldCodigoCli.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "no se tiene constancia de ningun cliente el los datos", "error", JOptionPane.ERROR_MESSAGE);
+            }else {
+                
+                do {                    
+                    int resultado = Integer.parseInt(JOptionPane.showInputDialog(this, "Indica el representante de ventas: \n" + toString(empleados)));
+                    sql = "select * from cliente where nombre_cliente like ?";
+                    stm = conBD.prepareStatement(sql);                   
+                    stm.setInt(1, resultado);
+                    consulta = stm.executeQuery();
+                    if (consulta.next()) {
+                        JOptionPane.showMessageDialog(this, "No se tiene consta de ningun empleado con ese numero asignado por favor intentelo de nuevo", "error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        sql = "UPDATE Cliente SET codigo_empleado_rep_ventas = ? WHERE (codigo_cliente = ?);";  
+                        stm = conBD.prepareStatement(sql);
+
+                        stm.setInt(1, resultado);
+                        stm.setInt(2, Integer.parseInt(jTextFieldCodigoCli.getText()));
+                        stm.executeUpdate();
+
+                        JOptionPane.showMessageDialog(this, "Empleado asignado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);        
+                        limpiarDatos();
+                        empCorrecto = true;
+                    }
+                } while (empCorrecto == false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAsignarEmpleadoActionPerformed
 
     private void jButtonMostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarClientesActionPerformed
-        // TODO add your handling code here:
+        TablaClientes tabla = new TablaClientes();
+        tabla.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButtonMostrarClientesActionPerformed
 
     public static void main(String args[]) {

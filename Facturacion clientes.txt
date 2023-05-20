@@ -1,22 +1,22 @@
 Farturacion total de cada cliente.
 -----------------------------------------------------------------------------------------------------------------------------
 |codigo cliente                          ||nombre cliente                          ||Facturacion total                       |
-|1                                       ||GoldFish Garden                         ||2000.000000                             |
-|3                                       ||Gardening Associates                    ||3642.000000                             |
-|4                                       ||Gerudo Valley                           ||16369.800000                            |
-|5                                       ||Tendo Garden                            ||23794.000000                            |
-|7                                       ||Beragua                                 ||2390.000000                             |
-|9                                       ||Naturagua                               ||929.000000                              |
-|13                                      ||Camunas Jardines S.L.                   ||2246.000000                             |
-|14                                      ||Dardena S.A.                            ||4160.000000                             |
-|15                                      ||Jardin de Flores                        ||6040.500000                             |
-|16                                      ||Flores Marivi                           ||4399.000000                             |
-|19                                      ||Golf S.A.                               ||232.000000                              |
-|23                                      ||Sotogrande                              ||272.000000                              |
-|26                                      ||Jardines y Mansiones Cactus SL          ||18846.000000                            |
-|27                                      ||Jardinerías Matías SL                   ||10972.000000                            |
-|28                                      ||Agrojardin                              ||8489.000000                             |
-|30                                      ||Jardineria Sara                         ||7863.000000                             |
-|35                                      ||Tutifruti S.A                           ||3321.000000                             |
-|38                                      ||El Jardin Viviente S.L                  ||1171.000000                             |
+|1                                       ||GoldFish Garden                         ||4000.00                                 |
+|3                                       ||Gardening Associates                    ||10926.00                                |
+|4                                       ||Gerudo Valley                           ||81849.00                                |
+|5                                       ||Tendo Garden                            ||23794.00                                |
+|7                                       ||Beragua                                 ||2390.00                                 |
+|9                                       ||Naturagua                               ||929.00                                  |
+|13                                      ||Camunas Jardines S.L.                   ||2246.00                                 |
+|14                                      ||Dardena S.A.                            ||4160.00                                 |
+|15                                      ||Jardin de Flores                        ||12081.00                                |
+|16                                      ||Flores Marivi                           ||4399.00                                 |
+|19                                      ||Golf S.A.                               ||232.00                                  |
+|23                                      ||Sotogrande                              ||272.00                                  |
+|26                                      ||Jardines y Mansiones Cactus SL          ||18846.00                                |
+|27                                      ||Jardinerías Matías SL                   ||10972.00                                |
+|28                                      ||Agrojardin                              ||8489.00                                 |
+|30                                      ||Jardineria Sara                         ||7863.00                                 |
+|35                                      ||Tutifruti S.A                           ||3321.00                                 |
+|38                                      ||El Jardin Viviente S.L                  ||1171.00                                 |
 -----------------------------------------------------------------------------------------------------------------------------
