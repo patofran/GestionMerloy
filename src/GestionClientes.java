@@ -178,35 +178,35 @@ public class GestionClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelcodigoCli = new javax.swing.JLabel();
+        jLabelNombreCli = new javax.swing.JLabel();
+        jLabelNombreContacto = new javax.swing.JLabel();
+        jLabelTelefono = new javax.swing.JLabel();
         jTextFieldCodigoCli = new javax.swing.JTextField();
         jTextFieldNombreCli = new javax.swing.JTextField();
         jTextFieldNombreCont = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelApellidoContacto = new javax.swing.JLabel();
         jTextFieldApellidoCont = new javax.swing.JTextField();
         jTextFieldTelefonoCli = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelFax = new javax.swing.JLabel();
         jTextFieldFaxCli = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jLabelDirreccion1 = new javax.swing.JLabel();
         jTextFieldDireccion1Cli = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jLabelDirreccion2 = new javax.swing.JLabel();
         jTextFieldDireccion2Cli = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelRegion = new javax.swing.JLabel();
         jTextFieldRegionCli = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabelpais = new javax.swing.JLabel();
+        jLabelCP = new javax.swing.JLabel();
         jTextFieldPaisCli = new javax.swing.JTextField();
         jTextFieldCodPostalCli = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+        jLabelLimiteCredito = new javax.swing.JLabel();
         jTextFieldCodigoEmpleado = new javax.swing.JTextField();
         jTextFieldLimite_credito = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabelCiudad = new javax.swing.JLabel();
+        jLabelCodigoEmpleado = new javax.swing.JLabel();
         jTextFieldCiudadCli = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelDatos = new javax.swing.JLabel();
         jButtonActualizacionCli = new javax.swing.JButton();
         jButtonBuscarCli = new javax.swing.JButton();
         jButtonAltaCli = new javax.swing.JButton();
@@ -215,6 +215,7 @@ public class GestionClientes extends javax.swing.JFrame {
         jButtonCambiarLimite = new javax.swing.JButton();
         jButtonAsignarEmpleado = new javax.swing.JButton();
         jButtonMostrarClientes = new javax.swing.JButton();
+        jButtonPagos = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -238,21 +239,21 @@ public class GestionClientes extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         jPanel2.setForeground(new java.awt.Color(102, 102, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Codigo Cliente.");
+        jLabelcodigoCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelcodigoCli.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelcodigoCli.setText("Codigo Cliente.");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre Cliente. *");
+        jLabelNombreCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelNombreCli.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNombreCli.setText("Nombre Cliente. *");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Nombre Contacto.");
+        jLabelNombreContacto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelNombreContacto.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNombreContacto.setText("Nombre Contacto.");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Telefono. *");
+        jLabelTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTelefono.setText("Telefono. *");
 
         jTextFieldCodigoCli.setEnabled(false);
         jTextFieldCodigoCli.addActionListener(new java.awt.event.ActionListener() {
@@ -261,37 +262,37 @@ public class GestionClientes extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Apellido Contacto.");
+        jLabelApellidoContacto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelApellidoContacto.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelApellidoContacto.setText("Apellido Contacto.");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Fax. *");
+        jLabelFax.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelFax.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFax.setText("Fax. *");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Direccion 1. *");
+        jLabelDirreccion1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelDirreccion1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDirreccion1.setText("Direccion 1. *");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Direccion 2.");
+        jLabelDirreccion2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelDirreccion2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDirreccion2.setText("Direccion 2.");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Region");
+        jLabelRegion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelRegion.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelRegion.setText("Region");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Pais.");
+        jLabelpais.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelpais.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelpais.setText("Pais.");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Codigo postal.");
+        jLabelCP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCP.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCP.setText("Codigo postal.");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Limite_credito.");
+        jLabelLimiteCredito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelLimiteCredito.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelLimiteCredito.setText("Limite_credito.");
 
         jTextFieldCodigoEmpleado.setEnabled(false);
         jTextFieldCodigoEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -300,13 +301,13 @@ public class GestionClientes extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Ciudad. *");
+        jLabelCiudad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCiudad.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCiudad.setText("Ciudad. *");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Codigo empleado ventas.");
+        jLabelCodigoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCodigoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCodigoEmpleado.setText("Codigo empleado ventas.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -320,42 +321,42 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel8)
+                                        .addComponent(jLabelcodigoCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabelNombreContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                        .addComponent(jLabelTelefono)
+                                        .addComponent(jLabelDirreccion1)
                                         .addComponent(jTextFieldCodigoCli)
                                         .addComponent(jTextFieldNombreCont)
                                         .addComponent(jTextFieldTelefonoCli))
                                     .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(114, 114, 114))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelCodigoEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(62, 62, 62)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel15)
+                            .addComponent(jLabelFax)
+                            .addComponent(jLabelApellidoContacto)
+                            .addComponent(jLabelLimiteCredito)
                             .addComponent(jTextFieldDireccion2Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
+                            .addComponent(jLabelDirreccion2)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextFieldLimite_credito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                                 .addComponent(jTextFieldFaxCli, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldApellidoCont, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldNombreCli, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabelNombreCli, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTextFieldDireccion1Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelpais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldPaisCli)
                     .addComponent(jTextFieldCodPostalCli)
                     .addComponent(jTextFieldCiudadCli)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel10)
+                            .addComponent(jLabelRegion)
+                            .addComponent(jLabelCP)
+                            .addComponent(jLabelCiudad)
                             .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(47, 47, 47))
@@ -365,9 +366,9 @@ public class GestionClientes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabelpais)
+                    .addComponent(jLabelNombreCli)
+                    .addComponent(jLabelcodigoCli))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCodigoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,9 +376,9 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jTextFieldPaisCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabelApellidoContacto)
+                    .addComponent(jLabelNombreContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCiudad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNombreCont, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,9 +386,9 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jTextFieldCiudadCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabelTelefono)
+                    .addComponent(jLabelFax)
+                    .addComponent(jLabelCP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -396,9 +397,9 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jTextFieldTelefonoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel14))
+                    .addComponent(jLabelRegion)
+                    .addComponent(jLabelLimiteCredito)
+                    .addComponent(jLabelCodigoEmpleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldRegionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,8 +407,8 @@ public class GestionClientes extends javax.swing.JFrame {
                     .addComponent(jTextFieldCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabelDirreccion1)
+                    .addComponent(jLabelDirreccion2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDireccion1Cli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,9 +416,9 @@ public class GestionClientes extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Datos.");
+        jLabelDatos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelDatos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDatos.setText("Datos.");
 
         jButtonActualizacionCli.setBackground(new java.awt.Color(51, 0, 153));
         jButtonActualizacionCli.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -499,6 +500,16 @@ public class GestionClientes extends javax.swing.JFrame {
             }
         });
 
+        jButtonPagos.setBackground(new java.awt.Color(51, 0, 153));
+        jButtonPagos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonPagos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonPagos.setText("Realizar Pagos");
+        jButtonPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPagosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -517,10 +528,11 @@ public class GestionClientes extends javax.swing.JFrame {
                             .addComponent(jButtonFichero)
                             .addComponent(jButtonCambiarLimite)
                             .addComponent(jButtonAsignarEmpleado)
-                            .addComponent(jButtonMostrarClientes))
+                            .addComponent(jButtonMostrarClientes)
+                            .addComponent(jButtonPagos))
                         .addGap(140, 140, 140))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelDatos)
                         .addGap(143, 143, 143)
                         .addComponent(jLabelTitulo)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -535,7 +547,7 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelDatos)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -544,6 +556,8 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addComponent(jButtonBajaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonActualizacionCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -555,7 +569,7 @@ public class GestionClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonMostrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -932,10 +946,19 @@ public class GestionClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAsignarEmpleadoActionPerformed
 
     private void jButtonMostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarClientesActionPerformed
+        //pasamos de clientes a la tabla de todos los clientes
+        
         TablaClientes tabla = new TablaClientes();
         tabla.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButtonMostrarClientesActionPerformed
+
+    private void jButtonPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagosActionPerformed
+        // boton para pasar de clientes a pagos
+        Pagos pago = new Pagos();
+        pago.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButtonPagosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -978,22 +1001,23 @@ public class GestionClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCambiarLimite;
     private javax.swing.JButton jButtonFichero;
     private javax.swing.JButton jButtonMostrarClientes;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton jButtonPagos;
+    private javax.swing.JLabel jLabelApellidoContacto;
+    private javax.swing.JLabel jLabelCP;
+    private javax.swing.JLabel jLabelCiudad;
+    private javax.swing.JLabel jLabelCodigoEmpleado;
+    private javax.swing.JLabel jLabelDatos;
+    private javax.swing.JLabel jLabelDirreccion1;
+    private javax.swing.JLabel jLabelDirreccion2;
+    private javax.swing.JLabel jLabelFax;
+    private javax.swing.JLabel jLabelLimiteCredito;
+    private javax.swing.JLabel jLabelNombreCli;
+    private javax.swing.JLabel jLabelNombreContacto;
+    private javax.swing.JLabel jLabelRegion;
+    private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelcodigoCli;
+    private javax.swing.JLabel jLabelpais;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

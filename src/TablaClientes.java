@@ -109,7 +109,7 @@ public class TablaClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCli = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jButtonVorverClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,9 +132,9 @@ public class TablaClientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableCli);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 255));
-        jLabel1.setText("TABLA DE CLIENTES");
+        jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 153, 255));
+        jLabelTitulo.setText("TABLA DE CLIENTES");
 
         jButtonVorverClientes.setBackground(new java.awt.Color(51, 0, 153));
         jButtonVorverClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -155,7 +155,7 @@ public class TablaClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1478, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelTitulo)
                         .addGap(151, 151, 151)
                         .addComponent(jButtonVorverClientes)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -166,7 +166,7 @@ public class TablaClientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelTitulo)
                     .addComponent(jButtonVorverClientes))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +230,7 @@ public class TablaClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonVorverClientes;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCli;
