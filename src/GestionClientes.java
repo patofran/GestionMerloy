@@ -104,7 +104,7 @@ public class GestionClientes extends javax.swing.JFrame {
     public void cargarDatos(ResultSet consulta){
         
         try {
-            while (consulta.next()) {
+                while (consulta.next()) {
                 jTextFieldCodigoCli.setText(String.valueOf(consulta.getInt("codigo_cliente")));
                 jTextFieldNombreCli.setText(consulta.getString("nombre_cliente"));
                 jTextFieldNombreCont.setText(consulta.getString("nombre_contacto"));
@@ -119,7 +119,7 @@ public class GestionClientes extends javax.swing.JFrame {
                 jTextFieldCodPostalCli.setText(consulta.getString("codigo_postal"));
                 jTextFieldCodigoEmpleado.setText(consulta.getString("codigo_empleado_rep_ventas"));
                 jTextFieldLimite_credito.setText(String.valueOf(consulta.getDouble("limite_credito")));
-            }
+                }
         } catch (SQLException ex) {
             Logger.getLogger(GestionClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,10 +152,7 @@ public class GestionClientes extends javax.swing.JFrame {
             System.out.println("Error al conectar a BD: " + error.getMessage());
         } catch (Exception e){
     
-        }
-        
-        
-        
+        }  
     }
     
     public String toString(ArrayList array) {
@@ -642,6 +639,9 @@ public class GestionClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAltaCliActionPerformed
 
     private void jButtonFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFicheroActionPerformed
+        
+        //mostramos la venta del fichero y guardamos clientes
+        
         FacturacionClientes fact = new FacturacionClientes();
         fact.setVisible(true);
         setVisible(false);
@@ -685,6 +685,8 @@ public class GestionClientes extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, "Cliente actualizado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);
                     
+                    //con esto dejamos los campos vacios para poder trabajar de otras formas
+                    
                     limpiarDatos();
                     
                 } catch (Exception ex) {
@@ -703,9 +705,13 @@ public class GestionClientes extends javax.swing.JFrame {
             int eleccion = 0, codigo = 0;
             String telefono, nombre;
             PreparedStatement stm;
+            
             //primero miramos la manera de buscar el cliente
             
             eleccion = JOptionPane.showOptionDialog(this, "Indica la forma de buscar un cliente", "Busqueda de los clientes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, 0);
+            
+            //segun nuestra elecion buscamos el cliente en la base de datos
+            
             switch (eleccion) {
                 case 0:
                     nombre = JOptionPane.showInputDialog(this,"Introduce el nombre del cliente");
@@ -716,11 +722,16 @@ public class GestionClientes extends javax.swing.JFrame {
                     stm = conBD.prepareStatement(sql);                   
                     stm.setString(1, nombre);
                     
-                    //mostramos los datos del clientes que buscamos
+                    //comprobamos que el cliente existe y si esta lo mostramos
                     
                     consulta = stm.executeQuery();
+                    if (consulta.next()) {
+                        consulta = stm.executeQuery();
+                        cargarDatos(consulta);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "no se tiene ningun cliente con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     
-                    cargarDatos(consulta);
                     break;
                 case 1:
                     telefono = JOptionPane.showInputDialog(this,"Introduce el telefono del cliente");
@@ -731,24 +742,37 @@ public class GestionClientes extends javax.swing.JFrame {
                     stm = conBD.prepareStatement(sql);                   
                     stm.setString(1, telefono);
                     
-                    //mostramos los datos del clientes que buscamos
+                    //comprobamos que el cliente existe y si esta lo mostramos
                     
                     consulta = stm.executeQuery();
-                    cargarDatos(consulta);
+                    if (consulta.next()) {
+                        consulta = stm.executeQuery();
+                        cargarDatos(consulta);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "no se tiene ningun cliente con ese telefono", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
                 case 2:
-                    telefono = JOptionPane.showInputDialog(this,"Introduce el codigo del cliente");
+                    codigo = Integer.parseInt(JOptionPane.showInputDialog(this,"Introduce el codigo del cliente"));
                     
                     //una vez tenemos el nombre lo buscamos en la base de datos
                     
                     sql = "select * from cliente where codigo_cliente = ?";
                     stm = conBD.prepareStatement(sql);                   
-                    stm.setString(1, telefono);
+                    stm.setInt(1, codigo);
                     
-                    //mostramos los datos del clientes que buscamos
+                    //comprobamos que el clinte que se busca existe en la base de datos
                     
                     consulta = stm.executeQuery();
-                    cargarDatos(consulta);
+                    if (consulta.next()) {
+                        
+                        //en el caso de exista lo mostramos
+                        
+                        consulta = stm.executeQuery();
+                        cargarDatos(consulta);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "no se tiene ningun cliente con ese codigo", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
                     
                 default:            
@@ -859,6 +883,7 @@ public class GestionClientes extends javax.swing.JFrame {
             ArrayList<String> empleados = new ArrayList<>();
             boolean empCorrecto = false;
             PreparedStatement stm;
+            
             //primero tenemos que sacar todos nombres de los empleados
         
             sql = "select codigo_empleado, nombre from empleado where puesto like 'Representante Ventas'";
@@ -868,22 +893,27 @@ public class GestionClientes extends javax.swing.JFrame {
                 empleados.add(consulta.getInt("codigo_empleado") + " " + consulta.getString("nombre"));
             }
 
+            //tenemos que tener un cliente el los datos cargados
+            
             if(jTextFieldCodigoCli.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "no se tiene constancia de ningun cliente el los datos", "error", JOptionPane.ERROR_MESSAGE);
             }else {
                 
+                //hacemos un bucle para en caso de poner un numero de un empleado correcto pedirlo otra vez
+                
                 do {                    
-                    int resultado = Integer.parseInt(JOptionPane.showInputDialog(this, "Indica el representante de ventas: \n" + toString(empleados)));
-                    sql = "select * from cliente where nombre_cliente like ?";
+                    int resultado = Integer.parseInt(JOptionPane.showInputDialog(this, "Indica el numero representante de ventas que le corrresponda: \n" + toString(empleados)));
+                    sql = "select * from cliente where codigo_cliente like ?";
                     stm = conBD.prepareStatement(sql);                   
                     stm.setInt(1, resultado);
                     consulta = stm.executeQuery();
+                    
+                    //hacfemos un bucle que pide el codigo y si lo pide mal se repite
+                    
                     if (consulta.next()) {
-                        JOptionPane.showMessageDialog(this, "No se tiene consta de ningun empleado con ese numero asignado por favor intentelo de nuevo", "error", JOptionPane.ERROR_MESSAGE);
-                    } else {
+                        
                         sql = "UPDATE Cliente SET codigo_empleado_rep_ventas = ? WHERE (codigo_cliente = ?);";  
                         stm = conBD.prepareStatement(sql);
-
                         stm.setInt(1, resultado);
                         stm.setInt(2, Integer.parseInt(jTextFieldCodigoCli.getText()));
                         stm.executeUpdate();
@@ -891,6 +921,8 @@ public class GestionClientes extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Empleado asignado con exito.", "Info", JOptionPane.INFORMATION_MESSAGE);        
                         limpiarDatos();
                         empCorrecto = true;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se tiene consta de ningun empleado con ese numero asignado por favor intentelo de nuevo", "error", JOptionPane.ERROR_MESSAGE);
                     }
                 } while (empCorrecto == false);
             }
